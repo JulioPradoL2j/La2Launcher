@@ -17,6 +17,7 @@ Launcher profissional para servidores **Lineage II Interlude (L2J)**, com sistem
 ---
 
 ## 🖼️ Preview
+<img width="902" height="499" alt="image" src="https://github.com/user-attachments/assets/7597223c-20d8-45fd-ac8e-58392d543af2" />
 
 > Interface estilo launcher oficial (MMORPG)
 > Botões: **Play / Full Check / Cancel**
