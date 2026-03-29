@@ -1,65 +1,54 @@
-# 🎮 L2Launcher - Interlude Patch System & Anti-Cheat
+# 🎮 L2Launcher — Professional Patch & Anti-Cheat System (Interlude)
 
-Launcher profissional desenvolvido para servidores **Lineage II Interlude (L2J)** com sistema de atualização automática e proteção básica contra ferramentas externas.
-
----
-
-## 🚀 Funcionalidades
-
-### 🔄 Sistema de Patch Automático
-
-* Atualização incremental baseada em versão
-* Download direto via **Dropbox (link direto)**
-* Extração automática de arquivos
-* Barra de progresso em tempo real
-* Controle de versão (`version.dat`)
+Launcher profissional para servidores **Lineage II Interlude (L2J)**, com sistema de atualização automática, proteção client-side e interface personalizada estilo MMORPG.
 
 ---
 
-### 🛡️ Anti-Cheat (Client-Side)
+## ✨ Destaques
 
-Sistema de proteção integrado que monitora processos suspeitos:
-
-* Cheat Engine
-* L2Phx
-* L2Walker
-* FileEdit / L2 FileEdit
-* CPreload
-* Injectors e ferramentas similares
-
-#### 🔍 Métodos de detecção:
-
-* Nome do processo
-* Título da janela
-* Descrição do executável
-
-#### ⚡ Ações automáticas:
-
-* Fecha o jogo (`l2.exe`)
-* Tenta encerrar o aplicativo suspeito
-* Notifica o jogador
+* 🔄 Patch automático incremental
+* ⚡ Download direto via Dropbox (sem HTML / sem bloqueios)
+* 🛡️ Anti-cheat integrado (process + window + file scan)
+* 🎯 UI customizada (botões invisíveis + imagem)
+* 🔐 Execução obrigatória como Administrador
+* 📊 Barra de progresso real (download + status)
+* 🧠 Sistema de versão (`version.dat`)
 
 ---
 
-### 🖥️ Interface
+## 🖼️ Preview
 
-* UI personalizada estilo MMORPG
-* Botões invisíveis sobre imagem (Play / Full Check / Cancel)
-* Cursores customizados
-* Sistema de tray (minimizar para bandeja)
+> Interface estilo launcher oficial (MMORPG)
+> Botões: **Play / Full Check / Cancel**
 
 ---
 
-### 🔐 Execução como Administrador
+## ⚙️ Tecnologias
 
-* Manifest configurado para `requireAdministrator`
-* Evita erros de permissão (especialmente em `system/`)
+* .NET Framework 4.8
+* Windows Forms (WinForms)
+* C#
+* HttpClient (download streaming)
+* System.Management (anti-cheat watcher)
 
 ---
 
-## 📂 Estrutura do Patch
+## 📦 Estrutura do Projeto
 
-Os patches são definidos via dicionário:
+```text
+La2Launcher/
+ ├── Form1.cs
+ ├── Form1.Designer.cs
+ ├── Resources/
+ ├── app.manifest
+ ├── La2Launcher.csproj
+```
+
+---
+
+## 🔄 Sistema de Patch
+
+Os patches são controlados via código:
 
 ```csharp
 public Dictionary<string, string> patchFiles = new Dictionary<string, string>()
@@ -68,75 +57,262 @@ public Dictionary<string, string> patchFiles = new Dictionary<string, string>()
 };
 ```
 
-✔ Cada versão corresponde a um `.zip`
-✔ O conteúdo é extraído diretamente no diretório do cliente
+### 🔥 Como funciona
+
+1. Lê `version.dat`
+2. Compara versões
+3. Baixa `.zip` do Dropbox
+4. Extrai automaticamente
+5. Atualiza versão local
 
 ---
 
-## 📥 Fluxo de Atualização
+## 🛡️ Anti-Cheat (Client-Side)
 
-1. Launcher inicia
-2. Lê versão local (`version.dat`)
-3. Compara com patches disponíveis
-4. Baixa versões faltantes
-5. Extrai arquivos automaticamente
-6. Atualiza versão local
+Detecção baseada em:
+
+* Nome do processo
+* Título da janela
+* Descrição do executável
+
+### 🔍 Exemplos bloqueados
+
+* Cheat Engine
+* L2Phx
+* L2Walker
+* FileEdit
+* CPreload
+* Injectors
+
+### ⚡ Ação automática
+
+* Fecha o jogo (`l2.exe`)
+* Tenta encerrar o hack
+* Notifica o jogador
 
 ---
 
-## ⚠️ Requisitos
+## ⚠️ Limitações
 
-* .NET Framework 4.8
-* Windows 10/11
-* Permissão de administrador
+Este anti-cheat é **client-side**:
+
+* Não impede usuários avançados
+* Deve ser combinado com validações no servidor (Java)
 
 ---
 
-## 📌 Recomendação
+# 🧪 COMO COMPILAR (TUTORIAL COMPLETO)
 
-❌ NÃO instalar em:
+## 📥 1. Requisitos
 
+Instale:
+
+* Visual Studio (2019 ou superior)
+* .NET Framework 4.8 SDK
+
+Durante instalação do Visual Studio, marque:
+
+✔ Desktop development with .NET
+
+---
+
+## 📂 2. Clonar ou baixar o projeto
+
+Via Git:
+
+```bash
+git clone https://github.com/SEU_USUARIO/La2Launcher.git
 ```
+
+Ou baixe o ZIP direto do GitHub.
+
+---
+
+## 🧩 3. Abrir no Visual Studio
+
+1. Abra o Visual Studio
+2. Clique em:
+
+```text
+Open a project or solution
+```
+
+3. Selecione:
+
+```text
+La2Launcher.sln
+```
+
+---
+
+## ⚙️ 4. Verificar configuração
+
+Abra:
+
+```text
+Project → Properties
+```
+
+Confirme:
+
+* Target Framework: `.NET Framework 4.8`
+* Output Type: `Windows Application`
+
+---
+
+## 🔐 5. Manifest (ADMIN)
+
+Certifique-se que o projeto possui:
+
+```xml
+<requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+```
+
+E que está selecionado em:
+
+```text
+Application → Manifest
+```
+
+---
+
+## 🔧 6. Restaurar dependências
+
+Se necessário:
+
+```text
+Build → Restore NuGet Packages
+```
+
+---
+
+## ▶️ 7. Compilar
+
+```text
+Build → Build Solution
+```
+
+Ou pressione:
+
+```text
+Ctrl + Shift + B
+```
+
+---
+
+## 🚀 8. Executar
+
+```text
+F5
+```
+
+ou:
+
+```text
+Start Debugging
+```
+
+---
+
+## 📦 9. Gerar EXE final
+
+Após build:
+
+```text
+/bin/Debug/
+ou
+/bin/Release/
+```
+
+Arquivo:
+
+```text
+La2Launcher.exe
+```
+
+---
+
+# 📁 Estrutura do Cliente
+
+```text
+Lineage2/
+ ├── system/
+ ├── La2Launcher.exe
+ ├── version.dat
+```
+
+---
+
+# ⚠️ IMPORTANTE
+
+## ❌ NÃO usar:
+
+```text
 C:\Program Files
 ```
 
-✔ Use:
+## ✅ Use:
 
-```
+```text
 C:\Games\Lineage2
 ```
 
 ---
 
-## 🧠 Limitações do Anti-Cheat
+# 🧱 Installer (Recomendado)
 
-Este sistema é **client-side**, ou seja:
+Use:
 
-* Não substitui validações no servidor
-* Pode ser burlado por usuários avançados
-* Serve como proteção básica contra uso comum
+* Inno Setup
 
----
-
-## 👨‍💻 Autor
-
-Projeto desenvolvido por **BAN-L2JDEV**
+Para criar instalador profissional.
 
 ---
 
-## 🌐 Comunidade
+# 🧠 Arquitetura
+
+### Launcher
+
+* UI + Patch + Anti-cheat
+
+### Servidor (Recomendado)
+
+* Validação de packets
+* Anti-speed / anti-abuse
+* Controle de sessão
+
+---
+
+# 🔥 Roadmap
+
+* [ ] MD5 check dos arquivos
+* [ ] Retry automático
+* [ ] CDN próprio
+* [ ] Anti-cheat avançado (memória)
+* [ ] Heartbeat launcher → servidor
+* [ ] Proteção HWID
+
+---
+
+# 👨‍💻 Autor
+
+**BAN-L2JDEV**
+
+---
+
+# 🌐 Comunidade
 
 🔗 https://www.l2jbrasil.com
 
 ---
 
-## ⭐ Contribuição
+# ⭐ Contribua
 
-Sinta-se livre para contribuir com melhorias, sugestões ou correções.
+Pull Requests são bem-vindos.
 
 ---
 
-## ⚖️ Licença
+# ⚖️ Licença
 
 Uso livre para servidores privados de Lineage II.
 
