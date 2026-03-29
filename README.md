@@ -122,7 +122,7 @@ Durante instalação do Visual Studio, marque:
 Via Git:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/La2Launcher.git
+git clone https://github.com/JulioPradoL2j/La2Launcher.git
 ```
 
 Ou baixe o ZIP direto do GitHub.
@@ -257,16 +257,6 @@ C:\Program Files
 ```text
 C:\Games\Lineage2
 ```
-
----
-
-# 🧱 Installer (Recomendado)
-
-Use:
-
-* Inno Setup
-
-Para criar instalador profissional.
 
 ---
 
