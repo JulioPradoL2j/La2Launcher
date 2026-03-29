@@ -18,7 +18,7 @@ namespace La2Laucher
     {
         public Dictionary<string, string> patchFiles = new Dictionary<string, string>()
         {
-             { "1.0.0.0", "https://www.dropbox.com/scl/fi/5iq4vz20od620n2y7af95/system.zip?rlkey=zldgndplkivuxcu5h2d2r27g6&st=ezypqu1k&dl=1" }
+             { "1.0.0.0", "https://www.dropbox.com/scl/fi/5iq4vz20od620n2y7af95/system.zip?rlkey=zldgndplkivuxcu5h2d2r27g6&st=c7grxd0z&dl=1" }
         };
 
         // ===== CURSOR API =====
@@ -45,7 +45,6 @@ namespace La2Laucher
         public string gamePath = Application.StartupPath;
         private string LocalVersionFile => Path.Combine(gamePath, "version.dat");
         private readonly string forumUrl = "https://www.l2jbrasil.com";
-        private System.Windows.Forms.Timer statusTimer;
         private System.Windows.Forms.Timer antiCheatTimer;
         private bool antiCheatAlertShown = false;
         private ManagementEventWatcher processStartWatcher;
@@ -637,22 +636,7 @@ namespace La2Laucher
         // ===== CLOSE CONTROL =====
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            try
-            {
-                antiCheatTimer?.Stop();
-                antiCheatTimer?.Dispose();
 
-                if (processStartWatcher != null)
-                {
-                    processStartWatcher.Stop();
-                    processStartWatcher.Dispose();
-                }
-            }
-            catch
-            {
-            }
-
-             
             if (!allowClose)
             {
                 e.Cancel = true;
