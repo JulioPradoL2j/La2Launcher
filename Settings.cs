@@ -1,4 +1,4 @@
-﻿namespace La2Laucher.Properties
+﻿namespace La2Launcher.Properties
 {
 
 

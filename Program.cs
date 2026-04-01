@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace La2Laucher
+namespace La2Launcher
 {
     internal static class Program
     {

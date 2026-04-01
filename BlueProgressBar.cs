@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace La2Laucher
+namespace La2Launcher
 {
     public class BlueProgressBar : CustomProgressBar
     {

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace La2Laucher
+namespace La2Launcher
 {
     public class CustomProgressBar : ProgressBar
     {

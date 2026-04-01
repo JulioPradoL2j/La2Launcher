@@ -12,13 +12,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace La2Laucher
+namespace La2Launcher
 {
     public partial class Form1 : Form
     {
         public Dictionary<string, string> patchFiles = new Dictionary<string, string>()
         {
-             { "1.0.0.0", "https://www.dropbox.com/scl/fi/5iq4vz20od620n2y7af95/system.zip?rlkey=zldgndplkivuxcu5h2d2r27g6&st=c7grxd0z&dl=1" }
+              { "1.0.0.0", "https://www.dropbox.com/scl/fi/5iq4vz20od620n2y7af95/system.zip?rlkey=zldgndplkivuxcu5h2d2r27g6&st=c7grxd0z&dl=1" },
+              { "1.0.0.1", "https://www.dropbox.com/scl/fi/75r1ezq6n9652wgdao8h9/animation.zip?rlkey=hvmybt6xny6ghm6c34wdx28kz&st=qnxy9y6p&dl=1" }
         };
 
         // ===== CURSOR API =====
@@ -51,52 +52,27 @@ namespace La2Laucher
 
         private readonly string[] blockedProcessNames =
         {
-            "cheatengine",
-            "cheat engine",
             "fileedit",
-            "l2fileedit",
             "l2phx",
             "l2walker",
-            "cpreload",
-            "engine",
-            "injector",
-            "boot",
-            "start",
-            "lineage2 v1.71",
-            "alquimista"
-
+            "l2tower"
         };
 
         private readonly string[] blockedWindowTitles =
         {
-            "cheat engine",
             "fileedit",
-            "l2 fileedit",
             "l2phx",
             "l2walker",
-            "cpreload",
-            "engine",
-            "injector",
-            "boot",
-            "start",
-            "lineage2 v1.71",
-            "alquimista"
+            "l2tower"
 
         };
 
         private readonly string[] blockedDescriptions =
         {
-            "cheat engine",
             "fileedit",
             "l2phx",
             "l2walker",
-            "cpreload",
-            "engine",
-            "injector",
-            "boot",
-            "start",
-            "lineage2 v1.71",
-            "alquimista"
+            "l2tower"
 
         };
 
@@ -201,30 +177,31 @@ namespace La2Laucher
         {
             try
             {
-                KillGameProcesses();
+                //KillGameProcesses();
 
-                try
-                {
-                    forbiddenProc.Kill();
-                }
-                catch
-                {
-                    // Se não conseguir matar o hack, ao menos fecha o jogo.
-                }
+                // try
+                // {
+                //     forbiddenProc.Kill();
+                // }
+                // catch
+                // {
+                // Se não conseguir matar o hack, ao menos fecha o jogo.
+                // }
 
                 if (!antiCheatAlertShown)
                 {
                     antiCheatAlertShown = true;
-
-                    MessageBox.Show(
-                        "Aplicativo proibido detectado:\n\n" +
-                        $"Processo: {forbiddenProc.ProcessName}\n\n" +
-                        "O jogo foi fechado por segurança.",
-                        "Anti-Cheat",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
                 }
+
+               //     MessageBox.Show(
+               //         "Aplicativo proibido detectado:\n\n" +
+               //        $"Processo: {forbiddenProc.ProcessName}\n\n" +
+               //         "O jogo foi fechado por segurança.",
+               //        "Anti-Cheat",
+               //         MessageBoxButtons.OK,
+               //         MessageBoxIcon.Warning
+               //     );
+               // }
 
                 SetStatus("Ferramenta proibida detectada.");
             }
@@ -266,6 +243,7 @@ namespace La2Laucher
         private void Form1_Load(object sender, EventArgs e)
         {
             InitAntiCheat();
+
             // ===== CRIAR CURSOR PRIMEIRO =====
             defaultCursor = CreateCursor(Properties.Resources.cursor_default, 0, 0);
             actionCursor = CreateCursor(Properties.Resources.cursor_pointer, 5, 5);
@@ -593,7 +571,8 @@ namespace La2Laucher
             }
 
             Process.Start(exe);
-            Application.Exit();
+            SetStatus("Jogando!");
+            Hide();
         }
 
         private void BtnCheckFull_Click(object sender, EventArgs e)
@@ -603,15 +582,48 @@ namespace La2Laucher
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            var r = MessageBox.Show("Fechar launcher?", "L2Launcher", MessageBoxButtons.YesNo);
+            bool gameRunning = Process.GetProcessesByName("l2").Length > 0;
 
-            if (r == DialogResult.Yes)
+            string message;
+
+            if (gameRunning)
+            {
+                message =
+                    "O jogo está em execução.\n\n" +
+                    "Se você fechar o launcher, o jogo também será encerrado.\n\n" +
+                    "Deseja continuar?";
+            }
+            else
+            {
+                message = "Deseja fechar o launcher?";
+            }
+
+            var result = MessageBox.Show(
+                message,
+                "L2Launcher",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
             {
                 allowClose = true;
+
+                // Se jogo estiver aberto → fecha também
+                if (gameRunning)
+                {
+                    foreach (var p in Process.GetProcessesByName("l2"))
+                    {
+                      
+                    }
+                }
+
                 Application.Exit();
             }
             else
-                Hide();
+            {
+                Hide(); // minimiza estilo launcher oficial
+            }
         }
 
         // ===== FORUM =====

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace La2Laucher
+namespace La2Launcher
 {
     public class OrangeProgressBar : CustomProgressBar
     {

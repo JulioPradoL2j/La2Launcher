@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associadas a um assembly.
-[assembly: AssemblyTitle("La2Laucher")]
+[assembly: AssemblyTitle("La2Launcher")]
 [assembly: AssemblyDescription("Launcher Updater")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("L2JDEV-PROJECT")]
-[assembly: AssemblyProduct("La2Laucher")]
+[assembly: AssemblyProduct("La2Launcher")]
 [assembly: AssemblyCopyright("Copyright ©  BAN-L2JDEV 2026")]
 [assembly: AssemblyTrademark("L2JDEV")]
 [assembly: AssemblyCulture("")]

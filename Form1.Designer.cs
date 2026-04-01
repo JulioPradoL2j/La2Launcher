@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace La2Laucher
+namespace La2Launcher
 {
     partial class Form1
     {
@@ -43,7 +43,7 @@ namespace La2Laucher
             this.lblStatus = new System.Windows.Forms.Label();
             this.trayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.arquivosBar = new La2Laucher.OrangeProgressBar();
+            this.arquivosBar = new La2Launcher.OrangeProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundBox)).BeginInit();
             this.backgroundBox.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +56,7 @@ namespace La2Laucher
             this.backgroundBox.Controls.Add(this.arquivosBar);
             this.backgroundBox.Controls.Add(this.lblStatus);
             this.backgroundBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.backgroundBox.Image = global::La2Laucher.Properties.Resources.backgroundStart;
+            this.backgroundBox.Image = global::La2Launcher.Properties.Resources.backgroundStart;
             this.backgroundBox.Location = new System.Drawing.Point(0, 0);
             this.backgroundBox.Name = "backgroundBox";
             this.backgroundBox.Size = new System.Drawing.Size(900, 500);
@@ -115,7 +115,7 @@ namespace La2Laucher
             // trayIcon
             // 
             this.trayIcon.ContextMenuStrip = this.trayMenu;
-            this.trayIcon.Icon = global::La2Laucher.Properties.Resources.favicon;
+            this.trayIcon.Icon = global::La2Launcher.Properties.Resources.favicon;
             this.trayIcon.Text = "L2 Launcher";
             this.trayIcon.Visible = true;
             // 
@@ -137,7 +137,7 @@ namespace La2Laucher
             this.Controls.Add(this.backgroundBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = global::La2Laucher.Properties.Resources.favicon;
+            this.Icon = global::La2Launcher.Properties.Resources.favicon;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "L2 Launcher";
